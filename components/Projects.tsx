@@ -1,17 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Target, DraftingCompass, TrendingUp } from "lucide-react";
+import { Target, DraftingCompass, TrendingUp, ExternalLink } from "lucide-react";
 import SectionHeading from "./SectionHeading";
+import ProjectModal from "./ProjectModal";
 import { projects } from "@/lib/data";
 
+type Project = (typeof projects)[number];
+
 export default function Projects() {
+  const [selected, setSelected] = useState<Project | null>(null);
+
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-24">
       <SectionHeading
         eyebrow="Featured work"
         title="Enterprise solutions, real outcomes"
-        lead="Selected work from AT&T, Boeing, WSECU, City National Bank, and current enterprise consulting. Confidential details are generalized where required."
+        lead="Selected work from AT&T, Boeing, WSECU, City National Bank, and current enterprise consulting. Click any card for the full case study."
       />
       <div className="grid gap-5 md:grid-cols-2">
         {projects.map((p, i) => (
@@ -22,13 +28,21 @@ export default function Projects() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, delay: (i % 2) * 0.08 }}
             whileHover={{ y: -6 }}
-            className="glass glass-hover flex flex-col p-6 md:p-7"
+            onClick={() => setSelected(p)}
+            className="glass glass-hover flex cursor-pointer flex-col p-6 md:p-7"
+            role="button"
+            tabIndex={0}
+            aria-label={`View case study: ${p.title}`}
+            onKeyDown={(e) => e.key === "Enter" && setSelected(p)}
           >
             <div className="mb-4 flex items-center justify-between gap-3">
               <h3 className="font-display text-lg font-bold text-bright">{p.title}</h3>
-              <span className="shrink-0 rounded-full border border-violet/40 bg-violet/10 px-3 py-1 text-xs font-semibold text-violet">
-                {p.tag}
-              </span>
+              <div className="flex shrink-0 items-center gap-2">
+                <span className="rounded-full border border-violet/40 bg-violet/10 px-3 py-1 text-xs font-semibold text-violet">
+                  {p.tag}
+                </span>
+                <ExternalLink size={14} className="text-body/40" />
+              </div>
             </div>
 
             <dl className="space-y-3 text-sm leading-relaxed">
@@ -36,13 +50,13 @@ export default function Projects() {
                 <dt className="mb-1 flex items-center gap-1.5 font-semibold text-bright">
                   <Target size={14} className="text-cyan" /> Business challenge
                 </dt>
-                <dd>{p.challenge}</dd>
+                <dd className="line-clamp-2">{p.challenge}</dd>
               </div>
               <div>
                 <dt className="mb-1 flex items-center gap-1.5 font-semibold text-bright">
                   <DraftingCompass size={14} className="text-cyan" /> Architecture
                 </dt>
-                <dd>{p.architecture}</dd>
+                <dd className="line-clamp-2">{p.architecture}</dd>
               </div>
               <div>
                 <dt className="mb-1 flex items-center gap-1.5 font-semibold text-bright">
@@ -65,6 +79,8 @@ export default function Projects() {
           </motion.article>
         ))}
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 }

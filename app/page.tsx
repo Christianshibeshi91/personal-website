@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ClientLogos from "@/components/ClientLogos";
 import About from "@/components/About";
 import Expertise from "@/components/Expertise";
 import CopilotStudio from "@/components/CopilotStudio";
@@ -18,6 +19,7 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
+      <ClientLogos />
       <About />
       <Expertise />
       <CopilotStudio />

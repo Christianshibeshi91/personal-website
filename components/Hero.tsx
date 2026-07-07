@@ -1,8 +1,8 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Github } from "lucide-react";
 import {
   AppWindow,
   Workflow,
@@ -88,6 +88,14 @@ export default function Hero() {
             <a href="#contact" className="btn-ghost">
               <Mail size={16} /> Contact me
             </a>
+            <a
+              href={person.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost"
+            >
+              <Github size={16} /> GitHub
+            </a>
           </motion.div>
 
           <motion.dl
@@ -120,10 +128,12 @@ export default function Hero() {
             <Image
               src="/portrait.png"
               alt={`${person.name}, Power Platform Subject Matter Expert`}
-              width={640}
-              height={960}
+              width={900}
+              height={1100}
               priority
-              className="h-auto w-full rounded-[1.6rem] object-cover"
+              quality={95}
+              sizes="(max-width: 768px) 90vw, 480px"
+              className="h-auto w-full rounded-[1.6rem] object-cover object-top"
             />
           </div>
 

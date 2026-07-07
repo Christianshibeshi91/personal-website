@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
@@ -12,7 +12,7 @@ export default function Expertise() {
       <SectionHeading
         eyebrow="Expertise"
         title="The full Microsoft business applications stack"
-        lead="From canvas apps to Copilot agents to the governance layer that keeps a tenant healthy — plus the pro-code skills to extend past low-code limits."
+        lead="From canvas apps to Copilot agents to the governance layer that keeps a tenant healthy, plus the pro-code skills to extend past low-code limits."
       />
       <div className="space-y-10">
         {groups.map((group) => (

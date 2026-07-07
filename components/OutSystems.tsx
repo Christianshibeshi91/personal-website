@@ -1,4 +1,4 @@
-import { Layers } from "lucide-react";
+﻿import { Layers } from "lucide-react";
 import Reveal from "./Reveal";
 
 export default function OutSystems() {
@@ -19,14 +19,14 @@ export default function OutSystems() {
             </h2>
             <p className="mt-5 leading-relaxed md:text-lg">
               Alongside my Microsoft specialization, I develop enterprise applications on
-              OutSystems Developer Cloud — including registration systems with SSO and
+              OutSystems Developer Cloud, including registration systems with SSO and
               payment integration. I'm not positioning myself as an OutSystems expert;
               what this work gives me is fluency in modern low-code architecture beyond a
               single vendor: data modeling, REST integrations, identity, application
               lifecycle management, and governance patterns that transfer directly.
             </p>
             <p className="mt-4 leading-relaxed md:text-lg">
-              For organizations running both platforms — or deciding between them — that
+              For organizations running both platforms, or deciding between them, that
               cross-platform perspective is the point.
             </p>
           </div>

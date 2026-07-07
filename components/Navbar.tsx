@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Github } from "lucide-react";
 import { person } from "@/lib/data";
 
 const links = [
@@ -17,12 +17,32 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = links.map((l) => l.href.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(`#${e.target.id}`);
+        });
+      },
+      { threshold: 0.25, rootMargin: "-80px 0px -60% 0px" }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -35,7 +55,7 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="font-display text-lg font-bold text-bright">
+        <a href="#top" className="font-display text-lg font-bold text-bright cursor-pointer">
           CS<span className="grad-text">.</span>
         </a>
 
@@ -44,18 +64,35 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-body transition-colors hover:text-bright"
+              className={`relative text-sm transition-colors duration-200 cursor-pointer ${
+                active === l.href ? "text-bright" : "text-body hover:text-bright"
+              }`}
             >
               {l.label}
+              {active === l.href && (
+                <motion.span
+                  layoutId="nav-dot"
+                  className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full bg-gradient-to-r from-violet to-cyan"
+                />
+              )}
             </a>
           ))}
+          <a
+            href={person.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            className="cursor-pointer text-body transition-colors duration-200 hover:text-bright"
+          >
+            <Github size={18} />
+          </a>
           <a href={person.resumeUrl} className="btn-primary !px-5 !py-2">
             Resume
           </a>
         </div>
 
         <button
-          className="text-bright md:hidden"
+          className="cursor-pointer text-bright md:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -64,23 +101,35 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open ? (
-        <div className="border-t border-line bg-ink/95 px-6 pb-6 backdrop-blur-xl md:hidden">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block py-3 text-sm text-body hover:text-bright"
-            >
-              {l.label}
-            </a>
-          ))}
-          <a href={person.resumeUrl} className="btn-primary mt-2">
-            Resume
-          </a>
-        </div>
-      ) : null}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden border-t border-line bg-ink/95 backdrop-blur-xl md:hidden"
+          >
+            <div className="px-6 pb-6 pt-2">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className={`block cursor-pointer py-3 text-sm transition-colors ${
+                    active === l.href ? "text-bright" : "text-body hover:text-bright"
+                  }`}
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a href={person.resumeUrl} className="btn-primary mt-2">
+                Resume
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

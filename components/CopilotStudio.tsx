@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -94,7 +94,7 @@ export default function CopilotStudio() {
         <SectionHeading
           eyebrow="Featured capability"
           title="Building intelligent business agents with Microsoft Copilot Studio"
-          lead="Agents that answer from your organization's knowledge, act through your business systems, and keep humans in the approval loop — designed, governed, and shipped to production."
+          lead="Agents that answer from your organization's knowledge, act through your business systems, and keep humans in the approval loop, designed, governed, and shipped to production."
         />
 
         <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr]">

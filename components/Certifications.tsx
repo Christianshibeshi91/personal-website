@@ -18,7 +18,7 @@ export default function Certifications() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
             whileHover={{ y: -6, rotate: i % 2 === 0 ? -0.5 : 0.5 }}
-            className="glass glass-hover relative overflow-hidden p-7"
+            className="glass glass-hover relative cursor-pointer overflow-hidden p-7"
           >
             <div
               aria-hidden

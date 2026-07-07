@@ -14,11 +14,14 @@ export default function About() {
         <Reveal>
           <div className="glass overflow-hidden rounded-[2rem] p-2">
             <Image
-              src="/portrait-alt.png"
+              src="/portrait-about.png"
               alt="Christian Shibeshi"
-              width={640}
-              height={960}
-              className="h-auto w-full rounded-[1.6rem] object-cover"
+              width={900}
+              height={1100}
+              quality={95}
+              loading="lazy"
+              sizes="(max-width: 768px) 90vw, 480px"
+              className="h-auto w-full rounded-[1.6rem] object-cover object-top"
             />
           </div>
         </Reveal>
