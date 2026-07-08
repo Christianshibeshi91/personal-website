@@ -46,7 +46,7 @@ export default function RequestResumeButton({ className = "btn-primary", childre
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
       setStatus("success");
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again.");
+      setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again later.");
       setStatus("error");
     }
   }

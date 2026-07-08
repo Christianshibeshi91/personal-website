@@ -75,9 +75,9 @@ export async function POST(req: Request) {
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      console.error("Resend error:", err);
+      console.error("Resend error:", JSON.stringify(err));
       return NextResponse.json(
-        { error: "Failed to send request. Please try again." },
+        { error: `Email service error: ${err?.message || err?.name || res.status}` },
         { status: 500 }
       );
     }

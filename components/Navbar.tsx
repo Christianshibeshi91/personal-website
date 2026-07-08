@@ -83,41 +83,44 @@ export default function Navbar() {
         </div>
 
         <button
-          className="cursor-pointer text-bright md:hidden"
+          className="cursor-pointer p-2 text-bright md:hidden"
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
-          {open ? <X /> : <Menu />}
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-t border-line bg-ink/95 backdrop-blur-xl md:hidden"
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 top-[65px] z-40 bg-ink/98 backdrop-blur-xl md:hidden"
           >
-            <div className="px-6 pb-6 pt-2">
+            <nav className="flex flex-col px-6 pt-4 pb-10">
               {links.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className={`block cursor-pointer py-3 text-sm transition-colors ${
-                    active === l.href ? "text-bright" : "text-body hover:text-bright"
+                  className={`border-b border-line/40 py-4 text-base font-medium transition-colors ${
+                    active === l.href ? "text-bright" : "text-body"
                   }`}
                 >
                   {l.label}
                 </a>
               ))}
-              <RequestResumeButton className="btn-primary mt-2">
-                Resume
-              </RequestResumeButton>
-            </div>
+              <div className="mt-6">
+                <RequestResumeButton className="btn-primary w-full justify-center">
+                  Request Resume
+                </RequestResumeButton>
+              </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
