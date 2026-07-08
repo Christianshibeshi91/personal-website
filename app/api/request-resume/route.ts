@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         from: "Resume Request <onboarding@resend.dev>",
-        to: "christianshibeshitech@outlook.com",
+        to: "shibeshichristian@gmail.com",
         reply_to: email,
         subject: `Resume Request — ${fullName} at ${organization}`,
         html: `
