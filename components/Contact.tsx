@@ -1,5 +1,5 @@
 ﻿import Image from "next/image";
-import { Linkedin, Mail, Download } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 import Reveal from "./Reveal";
 import CalendlyEmbed from "./CalendlyEmbed";
 import { person } from "@/lib/data";
@@ -27,9 +27,6 @@ export default function Contact() {
             <div className="flex flex-col gap-3">
               <a href={`mailto:${person.email}`} className="btn-primary justify-center">
                 <Mail size={16} /> Email me
-              </a>
-              <a href={person.resumeUrl} className="btn-ghost justify-center">
-                <Download size={16} /> Download resume
               </a>
             </div>
 
