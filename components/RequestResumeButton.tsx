@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, FileText, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 
@@ -13,6 +14,7 @@ interface Props {
 
 export default function RequestResumeButton({ className = "btn-primary", children }: Props) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [form, setForm] = useState({
@@ -32,6 +34,8 @@ export default function RequestResumeButton({ className = "btn-primary", childre
       setForm({ fullName: "", organization: "", email: "", intent: "" });
     }, 300);
   }
+
+  useEffect(() => { setMounted(true); }, []);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -72,6 +76,7 @@ export default function RequestResumeButton({ className = "btn-primary", childre
         )}
       </button>
 
+      {mounted && createPortal(
       <AnimatePresence>
         {open && (
           <motion.div
@@ -204,7 +209,9 @@ export default function RequestResumeButton({ className = "btn-primary", childre
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </>
   );
 }
