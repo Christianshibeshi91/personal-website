@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Target, DraftingCompass, TrendingUp, ArrowRight } from "lucide-react";
+import { X, Target, DraftingCompass, TrendingUp } from "lucide-react";
 import { person } from "@/lib/data";
 
 type Project = {
@@ -127,10 +127,7 @@ export default function ProjectModal({
 
               {/* CTA */}
               <div className="mt-8 flex flex-wrap gap-3 border-t border-line pt-6">
-                <a href={person.resumeUrl} className="btn-primary">
-                  View my resume <ArrowRight size={14} />
-                </a>
-                <a href={`mailto:${person.email}`} className="btn-ghost">
+                <a href={`mailto:${person.email}`} className="btn-primary">
                   Get in touch
                 </a>
               </div>
