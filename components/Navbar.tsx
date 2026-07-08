@@ -26,6 +26,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   useEffect(() => {
     const ids = links.map((l) => l.href.slice(1));
     const sections = ids
@@ -51,7 +57,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-line bg-ink/80 backdrop-blur-xl" : "bg-transparent"
+        scrolled || open ? "border-b border-line bg-ink/80 backdrop-blur-xl" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -100,7 +106,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 top-[65px] z-40 bg-ink/98 backdrop-blur-xl md:hidden"
+            className="fixed inset-0 top-[65px] z-40 bg-ink backdrop-blur-xl md:hidden"
           >
             <nav className="flex flex-col px-6 pt-4 pb-10">
               {links.map((l) => (
