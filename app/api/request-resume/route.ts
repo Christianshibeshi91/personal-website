@@ -40,8 +40,8 @@ export async function POST(req: Request) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: "Resume Request <onboarding@resend.dev>",
-        to: "shibeshichristian@gmail.com",
+        from: "Christian Shibeshi <noreply@christianshibeshi.com>",
+        to: "christianshibeshitech@outlook.com",
         reply_to: email,
         subject: `Resume Request — ${fullName} at ${organization}`,
         html: `
