@@ -40,7 +40,7 @@ export const person = {
   location: "Seattle, WA",
   email: "christianshibeshitech@outlook.com",
   linkedin: "https://www.linkedin.com/in/christianshibeshi",
-  github: "https://github.com/christianshibeshi",
+  github: "https://github.com/Christianshibeshi91",
   calendly: "https://calendly.com/shibeshichristian",
   resumeUrl: "/Christian-Shibeshi-Resume.pdf",
   siteUrl: "https://christianshibeshi.com",

@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github } from "lucide-react";
-import { person } from "@/lib/data";
+import { Menu, X } from "lucide-react";
+import RequestResumeButton from "./RequestResumeButton";
 
 const links = [
   { href: "#about", label: "About" },
@@ -77,18 +77,9 @@ export default function Navbar() {
               )}
             </a>
           ))}
-          <a
-            href={person.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub profile"
-            className="cursor-pointer text-body transition-colors duration-200 hover:text-bright"
-          >
-            <Github size={18} />
-          </a>
-          <a href={person.resumeUrl} className="btn-primary !px-5 !py-2">
+          <RequestResumeButton className="btn-primary !px-5 !py-2">
             Resume
-          </a>
+          </RequestResumeButton>
         </div>
 
         <button
@@ -123,9 +114,9 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <a href={person.resumeUrl} className="btn-primary mt-2">
+              <RequestResumeButton className="btn-primary mt-2">
                 Resume
-              </a>
+              </RequestResumeButton>
             </div>
           </motion.div>
         )}

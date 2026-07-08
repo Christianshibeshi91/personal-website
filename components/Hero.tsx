@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Mail, Github } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import {
   AppWindow,
   Workflow,
@@ -13,6 +13,7 @@ import {
   Layers,
 } from "lucide-react";
 import ParticleField from "./ParticleField";
+import RequestResumeButton from "./RequestResumeButton";
 import RotatingTitles from "./RotatingTitles";
 import { person, heroStats } from "@/lib/data";
 
@@ -79,22 +80,12 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="mt-8 flex flex-wrap gap-3"
           >
-            <a href={person.resumeUrl} className="btn-primary">
-              <Download size={16} /> View resume
-            </a>
+            <RequestResumeButton className="btn-primary" />
             <a href="#projects" className="btn-ghost">
               View projects <ArrowRight size={16} />
             </a>
             <a href="#contact" className="btn-ghost">
               <Mail size={16} /> Contact me
-            </a>
-            <a
-              href={person.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-ghost"
-            >
-              <Github size={16} /> GitHub
             </a>
           </motion.div>
 
