@@ -30,7 +30,7 @@ export async function POST(req: Request) {
 
     await resend.emails.send({
       from: "Resume Request <onboarding@resend.dev>",
-      to: "christianshibeshi91@gmail.com",
+      to: "christianshibeshitech@outlook.com",
       replyTo: email,
       subject: `Resume Request — ${fullName} at ${organization}`,
       html: `
@@ -55,7 +55,7 @@ export async function POST(req: Request) {
             </tr>
           </table>
           <p style="margin-top: 24px; color: #6b7280; font-size: 14px;">
-            Reply directly to this email to send your resume to ${fullName}.
+            Reply directly to this email to send your resume to ${fullName} at ${email}.
           </p>
         </div>
       `,
