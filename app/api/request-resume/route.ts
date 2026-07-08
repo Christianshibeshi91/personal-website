@@ -47,7 +47,7 @@ export async function POST(req: Request) {
         from: "Christian Shibeshi <noreply@christianshibeshi.com>",
         to: "christianshibeshitech@outlook.com",
         reply_to: email,
-        subject: `Resume Request — ${name} at ${organization}`,
+        subject: `Resume Request from ${name} at ${organization}`,
         html: `
           <div style="font-family:sans-serif;max-width:600px;margin:0 auto;padding:24px;background:#f9fafb;border-radius:8px;">
             <h2 style="color:#111827;margin-top:0;">New Resume Request</h2>

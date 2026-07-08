@@ -70,7 +70,7 @@ export default function Hero() {
             className="mt-5 max-w-xl text-base leading-relaxed md:text-lg"
           >
             I help enterprises turn Microsoft Power Platform and Copilot Studio into
-            mission-critical applications, intelligent agents, and governed automation —
+            mission-critical applications, intelligent agents, and governed automation,
             with the architecture and ALM discipline to run them for years.
           </motion.p>
 
