@@ -25,12 +25,23 @@ export default function RequestResumeButton({ className = "btn-primary", childre
   function close() {
     if (status === "loading") return;
     setOpen(false);
+    document.body.style.overflow = "";
     setTimeout(() => {
       setStatus("idle");
       setErrorMsg("");
       setForm({ fullName: "", organization: "", email: "", intent: "" });
     }, 300);
   }
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
