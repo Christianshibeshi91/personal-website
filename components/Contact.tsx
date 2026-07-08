@@ -7,19 +7,7 @@ import { person } from "@/lib/data";
 export default function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 py-24">
-      <Reveal>
-        <p className="eyebrow text-center">Contact</p>
-        <h2 className="section-title mt-3 text-center">
-          Let&apos;s build something{" "}
-          <span className="grad-text">great together</span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-center leading-relaxed md:text-lg">
-          Open to Senior, Lead, Principal, and Architect roles in Power Platform
-          and enterprise AI. Based in Seattle, available for remote and hybrid positions.
-        </p>
-      </Reveal>
-
-      <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+      <div className="mt-0 grid gap-10 lg:grid-cols-[1fr_1.4fr]">
         {/* Left, portrait + contact details */}
         <Reveal>
           <div className="flex flex-col gap-6">
