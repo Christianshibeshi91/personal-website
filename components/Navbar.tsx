@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import RequestResumeButton from "./RequestResumeButton";
@@ -18,6 +19,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -25,6 +27,8 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => { setMounted(true); }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -52,6 +56,7 @@ export default function Navbar() {
   }, []);
 
   return (
+    <>
     <motion.header
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -98,38 +103,38 @@ export default function Navbar() {
         </button>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed inset-0 top-[65px] z-40 bg-ink backdrop-blur-xl md:hidden"
-          >
-            <nav className="flex flex-col px-6 pt-4 pb-10">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className={`border-b border-line/40 py-4 text-base font-medium transition-colors ${
-                    active === l.href ? "text-bright" : "text-body"
-                  }`}
-                >
-                  {l.label}
-                </a>
-              ))}
-              <div className="mt-6">
-                <RequestResumeButton className="btn-primary w-full justify-center">
-                  Request Resume
-                </RequestResumeButton>
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.header>
+
+      {mounted && createPortal(
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="fixed inset-0 top-[65px] z-[90] bg-ink md:hidden"
+            >
+              <nav className="flex flex-col px-6 pt-4 pb-10">
+                {links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className={`border-b border-line/40 py-4 text-base font-medium transition-colors ${
+                      active === l.href ? "text-bright" : "text-body"
+                    }`}
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </>
   );
 }
