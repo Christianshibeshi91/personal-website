@@ -91,10 +91,13 @@ export default function SectionNav() {
                   animate={{
                     opacity: isActive ? 1 : isHovered ? 0.7 : 0.35,
                     scale: isActive ? 1.4 : 1,
+                    boxShadow: isActive
+                      ? "0 0 6px 2px rgba(139,92,246,0.9), 0 0 12px 4px rgba(6,182,212,0.5)"
+                      : "none",
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.3 }}
                   className={`block h-1.5 w-1.5 rounded-full ${
-                    isActive ? "bg-bright" : "bg-body"
+                    isActive ? "bg-white" : "bg-body"
                   }`}
                 />
               </button>
