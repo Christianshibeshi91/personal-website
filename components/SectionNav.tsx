@@ -94,9 +94,7 @@ export default function SectionNav() {
                   }}
                   transition={{ duration: 0.2 }}
                   className={`block h-1.5 rounded-full ${
-                    isActive
-                      ? "bg-gradient-to-r from-violet to-cyan"
-                      : "bg-body"
+                    isActive ? "bg-bright" : "bg-body"
                   }`}
                 />
               </button>
