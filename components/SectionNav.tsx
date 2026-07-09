@@ -90,9 +90,9 @@ export default function SectionNav() {
                 <motion.span
                   animate={{
                     opacity: isActive ? 1 : isHovered ? 0.7 : 0.35,
-                    scale: isActive ? 1.4 : 1,
+                    scale: 1,
                     boxShadow: isActive
-                      ? "0 0 6px 2px rgba(139,92,246,0.9), 0 0 12px 4px rgba(6,182,212,0.5)"
+                      ? "0 0 4px 1px rgba(139,92,246,0.5), 0 0 8px 2px rgba(6,182,212,0.25)"
                       : "none",
                   }}
                   transition={{ duration: 0.3 }}
