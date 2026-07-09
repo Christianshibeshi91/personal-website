@@ -89,11 +89,11 @@ export default function SectionNav() {
                 {/* Dot */}
                 <motion.span
                   animate={{
-                    width: isActive ? 20 : 6,
                     opacity: isActive ? 1 : isHovered ? 0.7 : 0.35,
+                    scale: isActive ? 1.4 : 1,
                   }}
                   transition={{ duration: 0.2 }}
-                  className={`block h-1.5 rounded-full ${
+                  className={`block h-1.5 w-1.5 rounded-full ${
                     isActive ? "bg-bright" : "bg-body"
                   }`}
                 />
