@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import SectionNav from "@/components/SectionNav";
 import Hero from "@/components/Hero";
 import ClientLogos from "@/components/ClientLogos";
 import About from "@/components/About";
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <main>
       <Navbar />
+      <SectionNav />
       <Hero />
       <ClientLogos />
       <About />
