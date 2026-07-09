@@ -18,29 +18,52 @@ export default function SectionNav() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const els = sections
-      .map((s) => document.getElementById(s.id))
-      .filter(Boolean) as HTMLElement[];
+    let ticking = false;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { threshold: 0.25, rootMargin: "-80px 0px -50% 0px" }
-    );
+    const update = () => {
+      ticking = false;
 
-    els.forEach((el) => observer.observe(el));
+      // Show nav only after hero is scrolled past
+      setVisible(window.scrollY > 200);
 
-    // Show nav after hero scrolled past
-    const onScroll = () => setVisible(window.scrollY > 200);
-    onScroll();
+      // Reference line ~40% down the viewport
+      const line = window.innerHeight * 0.4;
+
+      // Pick the single section whose top has crossed the line and is closest to it
+      let current = "";
+      let closest = Infinity;
+
+      for (const s of sections) {
+        const el = document.getElementById(s.id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        // Section has entered (top above the line) and is the nearest such section
+        if (top <= line) {
+          const dist = line - top;
+          if (dist < closest) {
+            closest = dist;
+            current = s.id;
+          }
+        }
+      }
+
+      setActive(current);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
 
     return () => {
-      observer.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
