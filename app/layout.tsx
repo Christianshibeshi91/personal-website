@@ -54,7 +54,7 @@ const jsonLd = {
   image: `${person.siteUrl}/portrait.png`,
   jobTitle: "Power Platform Subject Matter Expert",
   address: { "@type": "PostalAddress", addressLocality: "Seattle", addressRegion: "WA" },
-  sameAs: [person.linkedin, person.github],
+  sameAs: [person.linkedin],
   knowsAbout: seoKeywords,
   worksFor: { "@type": "Organization", name: "Independent Consulting" },
 };

@@ -1,5 +1,5 @@
 ﻿import Image from "next/image";
-import { Linkedin, Github, Mail, Download } from "lucide-react";
+import { Linkedin, Mail, Download } from "lucide-react";
 import Reveal from "./Reveal";
 import CalendlyEmbed from "./CalendlyEmbed";
 import { person } from "@/lib/data";
@@ -54,15 +54,6 @@ export default function Contact() {
                 className="cursor-pointer text-body transition-colors hover:text-bright"
               >
                 <Linkedin />
-              </a>
-              <a
-                href={person.github}
-                aria-label="GitHub profile"
-                rel="noopener noreferrer"
-                target="_blank"
-                className="cursor-pointer text-body transition-colors hover:text-bright"
-              >
-                <Github />
               </a>
             </div>
           </div>
