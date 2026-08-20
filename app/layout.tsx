@@ -34,14 +34,12 @@ export const metadata: Metadata = {
     description:
       "Enterprise Power Platform architecture, Copilot Studio AI agents, and governed low-code delivery. 9+ years across AT&T, Boeing, WSECU, and City National Bank.",
     siteName: person.name,
-    images: [{ url: "/portrait.png", width: 1024, height: 1536, alt: person.name }],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${person.name} — Power Platform SME`,
     description:
       "Copilot Studio agentic development and enterprise Power Platform architecture.",
-    images: ["/portrait.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -51,7 +49,6 @@ const jsonLd = {
   "@type": "Person",
   name: person.name,
   url: person.siteUrl,
-  image: `${person.siteUrl}/portrait.png`,
   jobTitle: "Power Platform Subject Matter Expert",
   address: { "@type": "PostalAddress", addressLocality: "Seattle", addressRegion: "WA" },
   sameAs: [person.linkedin, person.github],
