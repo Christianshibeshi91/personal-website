@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import RequestResumeButton from "./RequestResumeButton";
-import { person } from "@/lib/data";
 
 const links = [
   { href: "#about", label: "About" },
@@ -89,15 +88,6 @@ export default function Navbar() {
               )}
             </a>
           ))}
-          <a
-            href={person.github}
-            aria-label="GitHub profile"
-            rel="noopener noreferrer"
-            target="_blank"
-            className="cursor-pointer text-body transition-colors duration-200 hover:text-bright"
-          >
-            <Github size={20} />
-          </a>
           <RequestResumeButton className="btn-primary !px-5 !py-2">
             Resume
           </RequestResumeButton>
@@ -139,15 +129,6 @@ export default function Navbar() {
                     {l.label}
                   </a>
                 ))}
-                <a
-                  href={person.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 border-b border-line/40 py-4 text-base font-medium text-body transition-colors"
-                >
-                  <Github size={18} /> GitHub
-                </a>
               </nav>
             </motion.div>
           )}

@@ -51,7 +51,7 @@ const jsonLd = {
   url: person.siteUrl,
   jobTitle: "Power Platform Subject Matter Expert",
   address: { "@type": "PostalAddress", addressLocality: "Seattle", addressRegion: "WA" },
-  sameAs: [person.linkedin, person.github],
+  sameAs: [person.linkedin],
   knowsAbout: seoKeywords,
   worksFor: { "@type": "Organization", name: "Independent Consulting" },
 };
